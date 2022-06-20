@@ -1,11 +1,12 @@
 # `atomist/js-sample-skill`
 
-Simple skill showing how to subscribe to and transact new data written in JavaScript.
+Simple skill showing how to subscribe to and transact new data written in
+JavaScript.
 
 ## Files
 
 | File                                                                       | Description                                                 |
-|----------------------------------------------------------------------------|-------------------------------------------------------------|
+| -------------------------------------------------------------------------- | ----------------------------------------------------------- |
 | [datalog/schema/commit_signature.edn](datalog/schema/commit_signature.edn) | Datalog schema defining Commit signature facts              |
 | [datalog/subscription/on_push.edn](datalog/subscription/on_push.edn)       | Subscription for new pushes                                 |
 | [main.js](main.js)                                                         | JavaScript file defining event handlers and main entrypoint |
@@ -77,4 +78,3 @@ Created by [Atomist][atomist]. Need Help? [Join our Slack workspace][slack].
 
 [atomist]: https://atomist.com/ "Atomist"
 [slack]: https://join.atomist.com/ "Atomist Community Slack"
- 

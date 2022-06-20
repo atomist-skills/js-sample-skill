@@ -19,5 +19,3 @@ skill:
           limit:
             cpu: 1
             memory: 1024
-
-  
