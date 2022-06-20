@@ -17,11 +17,12 @@
 const skill = require("@atomist/skill");
 const {Octokit} = require("@octokit/rest");
 
-exports.on_push = async ctx => {
+const TransactCommitSignature = async ctx => {
 
-    const commit = ctx.data[0];
+    const commit = ctx.data[0][0];
 
-    const octokit = new Octokit({ auth: `token ${commit["git.commit/repo"]["git.repo/org"]["github.org/installation-token"]}` });
+    const octokit = new Octokit(
+        { auth: `token ${commit["git.commit/repo"]["git.repo/org"]["github.org/installation-token"]}` });
 
     const gitCommit = (await octokit.repos.getCommit({
         owner: commit["git.commit/repo"]["git.repo/org"]["git.org/name"],
@@ -57,3 +58,5 @@ exports.on_push = async ctx => {
 
     return { code: 0, reason: "Successfully transacted commit signature for 1 commit" };
 };
+
+skill.start({ on_push: TransactCommitSignature }).then(_ => {});

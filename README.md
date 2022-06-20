@@ -4,13 +4,13 @@ Simple skill showing how to subscribe to and transact new data written in JavaSc
 
 ## Files
 
-| File                                                                       | Description                                    |
-|----------------------------------------------------------------------------|------------------------------------------------|
-| [datalog/schema/commit_signature.edn](datalog/schema/commit_signature.edn) | Datalog schema defining Commit signature facts |
-| [datalog/subscription/on_push.edn](datalog/subscription/on_push.edn)       | Subscription for new pushes                    |
-| [events.js](events.js)                                                     | JavaScript file defining the event handlers    |
-| [skill.yaml](skill.yaml)                                                   | Skill descriptor (metadata and parameters etc) |
-| [skill.package.yaml](skill.package.yaml)                                   | Skill packaging instructions                   |
+| File                                                                       | Description                                                 |
+|----------------------------------------------------------------------------|-------------------------------------------------------------|
+| [datalog/schema/commit_signature.edn](datalog/schema/commit_signature.edn) | Datalog schema defining Commit signature facts              |
+| [datalog/subscription/on_push.edn](datalog/subscription/on_push.edn)       | Subscription for new pushes                                 |
+| [main.js](main.js)                                                         | JavaScript file defining event handlers and main entrypoint |
+| [skill.yaml](skill.yaml)                                                   | Skill descriptor (metadata and parameters etc)              |
+| [skill.package.yaml](skill.package.yaml)                                   | Skill packaging instructions                                |
 
 ## Contributing
 
