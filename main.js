@@ -47,6 +47,7 @@ const TransactCommitSignature = async ctx => {
     ];
     const signatureEntity = {
         "schema/entity-type": skill.datalog.asKeyword("git.commit/signature"),
+        "git.commit.signature/commit": "$commit",
         "git.commit.signature/status": gitCommit.commit.verification.verified
             ? skill.datalog.asKeyword("git.commit.signature/VERIFIED")
             : skill.datalog.asKeyword("git.commit.signature/NOT_VERIFIED"),
