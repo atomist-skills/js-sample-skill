@@ -30,7 +30,7 @@ const TransactCommitSignature = async ctx => {
         ref: commit["git.commit/sha"],
     })).data;
 
-    await ctx.datalog.transact([
+    const entities = [
         {
             "schema/entity-type": skill.datalog.asKeyword("git/repo"),
             "schema/entity": "$repo",
@@ -44,15 +44,20 @@ const TransactCommitSignature = async ctx => {
             "git.commit/sha": commit["git.commit/sha"],
             "git.provider/url": commit["git.commit/repo"]["git.repo/org"]["git.provider/url"],
         },
-        {
-            "schema/entity-type": skill.datalog.asKeyword("git.commit/signature"),
-            "git.commit.signature/signature": gitCommit.commit.verification.signature,
-            "git.commit.signature/status": gitCommit.commit.verification.verified
-                ? skill.datalog.asKeyword("git.commit.signature/VERIFIED")
-                : skill.datalog.asKeyword("git.commit.signature/NOT_VERIFIED"),
-            "git.commit.signature/reason": gitCommit.commit.verification.reason,
-        }
-    ]);
+    ];
+    const signatureEntity = {
+        "schema/entity-type": skill.datalog.asKeyword("git.commit/signature"),
+        "git.commit.signature/status": gitCommit.commit.verification.verified
+            ? skill.datalog.asKeyword("git.commit.signature/VERIFIED")
+            : skill.datalog.asKeyword("git.commit.signature/NOT_VERIFIED"),
+        "git.commit.signature/reason": gitCommit.commit.verification.reason,
+    }
+    if (gitCommit.commit.verification.signature) {
+        signatureEntity["git.commit.signature/signature"] = gitCommit.commit.verification.signature;
+    }
+    entities.push(signatureEntity);
+
+    await ctx.datalog.transact(entities);
 
     skill.log.info("Transacted commit signature for %s", commit["git.commit/sha"]);
 
