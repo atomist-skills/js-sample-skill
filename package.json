@@ -17,12 +17,12 @@
   "scripts": {
     "skill": "run-s skill:generate",
     "skill:clean": "atm-skill clean",
-    "skill:generate": "atm-skill generate",
+    "skill:generate": "atm-skill generate --no-artifacts",
     "skill:package": "atm-skill package",
     "skill:register": "atm-skill register"
   },
   "dependencies": {
-    "@atomist/skill": "^0.12.0-main.44"
+    "@atomist/skill": "^1.0.0-branch-v2.13"
   },
   "devDependencies": {
     "mocha": "^8.4.0",

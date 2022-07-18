@@ -18,15 +18,16 @@ const skill = require("@atomist/skill");
 const {Octokit} = require("@octokit/rest");
 
 const TransactCommitSignature = async ctx => {
+    const commit = ctx.event.context.subscription.result[0][0];
+    const repo = commit["git.commit/repo"];
+    const org = repo["git.repo/org"];
 
-    const commit = ctx.data[0][0];
-
-    const octokit = new Octokit(
-        { auth: `token ${commit["git.commit/repo"]["git.repo/org"]["github.org/installation-token"]}` });
+    const octokit = new Octokit(org["github.org/installation-token"] ?
+        { auth: `token ${org["github.org/installation-token"]}` } : undefined);
 
     const gitCommit = (await octokit.repos.getCommit({
-        owner: commit["git.commit/repo"]["git.repo/org"]["git.org/name"],
-        repo: commit["git.commit/repo"]["git.repo/name"],
+        owner: org["git.org/name"],
+        repo: repo["git.repo/name"],
         ref: commit["git.commit/sha"],
     })).data;
 
@@ -34,15 +35,15 @@ const TransactCommitSignature = async ctx => {
         {
             "schema/entity-type": skill.datalog.asKeyword("git/repo"),
             "schema/entity": "$repo",
-            "git.repo/source-id": commit["git.commit/repo"]["git.repo/source-id"],
-            "git.provider/url": commit["git.commit/repo"]["git.repo/org"]["git.provider/url"],
+            "git.repo/source-id": repo["git.repo/source-id"],
+            "git.provider/url": org["git.provider/url"],
         },
         {
             "schema/entity-type": skill.datalog.asKeyword("git/commit"),
             "schema/entity": "$commit",
             "git.commit/repo": "$repo",
             "git.commit/sha": commit["git.commit/sha"],
-            "git.provider/url": commit["git.commit/repo"]["git.repo/org"]["git.provider/url"],
+            "git.provider/url": org["git.provider/url"],
         },
     ];
     const signatureEntity = {

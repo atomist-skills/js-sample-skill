@@ -3,6 +3,9 @@ FROM atomist/skill:alpine_3.15-node_16@sha256:fbb280e625a68ab37088c43072235a6804
 
 WORKDIR "/skill"
 
+LABEL com.docker.skill.api.version="container/v2"
+COPY skill.yaml /
+
 COPY package.json package-lock.json ./
 
 RUN apk add --no-cache \
