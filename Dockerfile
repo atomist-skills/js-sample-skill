@@ -1,5 +1,5 @@
 # Set up runtime container
-FROM atomist/skill:alpine_3.15-node_16@sha256:fbb280e625a68ab37088c43072235a68049c9a4fc358eb0bf164faad3a362b1a
+FROM atomist/skill:alpine_3.15-node_16@sha256:46e34acfec0f3863f40b2ec08c73ad17306b9a084db47e510ce3748d6b6c7384
 
 WORKDIR "/skill"
 
