@@ -17,7 +17,7 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: docker.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: atomist/js-sample-skill
+  IMAGE_NAME: atomist/ts-sample-skill
 
 jobs:
   build:
@@ -31,7 +31,13 @@ jobs:
 
     steps:
       - name: Checkout repository
+        if: github.event_name != 'pull_request'
         uses: actions/checkout@v3
+      - name: Checkout repository for PR
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
