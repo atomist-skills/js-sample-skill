@@ -1,10 +1,11 @@
 # Set up runtime container
 FROM atomist/skill:alpine_3.16-node_16@sha256:45b4a0b5c48576a7269f8b2861ebc05cec1881cfb48abbb21aa8215ccf6bd3c6
 
-WORKDIR "/skill"
-
 LABEL com.docker.skill.api.version="container/v2"
 COPY skill.yaml /
+COPY datalog /datalog
+
+WORKDIR "/skill"
 
 COPY package.json package-lock.json ./
 

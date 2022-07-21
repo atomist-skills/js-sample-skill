@@ -23,7 +23,7 @@ const TransactCommitSignature = async ctx => {
     const org = repo["git.repo/org"];
 
     const octokit = new Octokit(org["github.org/installation-token"] ?
-        { auth: `token ${org["github.org/installation-token"]}` } : undefined);
+        {auth: `token ${org["github.org/installation-token"]}`} : undefined);
 
     const gitCommit = (await octokit.repos.getCommit({
         owner: org["git.org/name"],
@@ -63,7 +63,29 @@ const TransactCommitSignature = async ctx => {
 
     skill.log.info("Transacted commit signature for %s", commit["git.commit/sha"]);
 
-    return { code: 0, reason: "Successfully transacted commit signature for 1 commit" };
+    return {
+        state: skill.State.Completed,
+        reason: "Successfully transacted commit signature for 1 commit",
+    };
 };
 
-skill.start({ on_push: TransactCommitSignature }).then(_ => {});
+const LogCommitSignature = async ctx => {
+    const result = ctx.event.context.subscription.result[0];
+    const commit = result[0];
+    const signature = result[1];
+    skill.log.info(
+        "Commit %s is signed and verified by: %s",
+        commit["git.commit/sha"],
+        signature["git.commit.signature/signature"],
+    );
+
+    return {
+        state: skill.State.Completed,
+        reason: "Detected signed and verified commit",
+    };
+};
+
+skill.start({
+    on_push: TransactCommitSignature,
+    on_commit_signature: LogCommitSignature,
+}).then(_ => { });

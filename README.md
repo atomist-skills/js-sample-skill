@@ -9,9 +9,10 @@ JavaScript.
 | -------------------------------------------------------------------------- | ----------------------------------------------------------- |
 | [datalog/schema/commit_signature.edn](datalog/schema/commit_signature.edn) | Datalog schema defining Commit signature facts              |
 | [datalog/subscription/on_push.edn](datalog/subscription/on_push.edn)       | Subscription for new pushes                                 |
+| [datalog/subscription/on_commit_signature.edn](datalog/subscription/on_commit_signature.edn)       | Subscription for new commit signatures added to the database                    |
+| [Dockerfile](Dockerfile)                                                   | Dockerfile to build the Skill runtime container image       |
 | [main.js](main.js)                                                         | JavaScript file defining event handlers and main entrypoint |
 | [skill.yaml](skill.yaml)                                                   | Skill descriptor (metadata and parameters etc)              |
-| [skill.package.yaml](skill.package.yaml)                                   | Skill packaging instructions                                |
 
 ## Contributing
 
