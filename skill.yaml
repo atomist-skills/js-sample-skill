@@ -12,24 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-apiVersion: 1
 skill:
+  apiVersion: v2
   name: js-sample-skill
   namespace: atomist
   displayName: JavaScript Sample Skill
   author: Atomist, Inc.
   description: Very basic skill written in JavaScript
-  longDescription: Atomist Skill registered from atomist-skills/js-sample-skill
   license: Apache-2.0
   categories:
     - DEVSECOPS
-  homepageUrl: https://github.com/atomist-skills/js-sample-skill#readme
-
-  artifacts:
-    docker:
-      - name: docker
-        image: gcr.io/atomist-container-skills/js-sample-skill
-        resources:
-          limit:
-            cpu: 1
-            memory: 1024
