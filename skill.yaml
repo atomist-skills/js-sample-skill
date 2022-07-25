@@ -14,11 +14,7 @@
 
 skill:
   apiVersion: v2
-  name: js-sample-skill
-  namespace: atomist
   displayName: JavaScript Sample Skill
-  author: Atomist, Inc.
+  author: Atomist
   description: Very basic skill written in JavaScript
   license: Apache-2.0
-  categories:
-    - DEVSECOPS

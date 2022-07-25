@@ -1,18 +1,12 @@
 {
-  "name": "@atomist/js-sample-skill",
-  "homepage": "https://github.com/atomist-skills/js-sample-skill#readme",
   "license": "Apache-2.0",
   "author": {
-    "name": "Atomist, Inc.",
+    "name": "Atomist",
     "email": "oss@atomist.com",
     "url": "https://atomist.com"
   },
   "directories": {
     "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/atomist-skills/js-sample-skill.git"
   },
   "scripts": {
     "skill": "run-s skill:generate",

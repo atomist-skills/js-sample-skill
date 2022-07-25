@@ -1,4 +1,4 @@
-# `atomist/js-sample-skill`
+# JavaScript Sample Skill
 
 Simple skill showing how to subscribe to and transact new data written in
 JavaScript.
