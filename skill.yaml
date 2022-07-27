@@ -18,3 +18,9 @@ skill:
   author: Atomist
   description: Very basic skill written in JavaScript
   license: Apache-2.0
+  parameters:
+    - repoFilter:
+        name: repoFilter
+        displayName: Which repositories
+        description: ''
+        required: false
